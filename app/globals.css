@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Define theme colors in :root for easier management */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --text-primary-color: #141c24;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,14 +16,99 @@
   }
 }
 
+/* Apply global styling */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Utility layer for typography and other custom utilities */
 @layer utilities {
+  /* Common text-balance utility */
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Heading styles using a common structure */
+  .text-heading-1,
+  .text-heading-2,
+  .text-heading-3,
+  .text-heading-4 {
+    font-weight: 800;
+    color: var(--text-primary-color);
+  }
+
+  .text-heading-1 {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .text-heading-2 {
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .text-heading-3 {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .text-heading-4 {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  /* Body text styles with shared properties */
+  .text-body-base,
+  .text-body-medium,
+  .text-body-small,
+  .text-body-base-overline,
+  .text-body-small-overline {
+    font-weight: 500;
+    color: var(--text-primary-color);
+  }
+
+  .text-body-base {
+    font-size: 16px;
+    line-height: 18.75px;
+  }
+
+  .text-body-medium {
+    font-size: 14px;
+    line-height: 16.41px;
+  }
+
+  .text-body-small {
+    font-size: 12px;
+    line-height: 14.06px;
+  }
+
+  /* Overline styles */
+  .text-body-base-overline,
+  .text-body-small-overline {
+    text-transform: uppercase; /* Overlines are typically uppercase */
+  }
+
+  .text-body-base-overline {
+    font-size: 16px;
+    line-height: 18.75px;
+  }
+
+  .text-body-small-overline {
+    font-size: 12px;
+    line-height: 14.06px;
+  }
+
+  @keyframes shine {
+    to {
+      background-position-x: 100%;
+    }
+  }
+
+  .bg-shine {
+    background: linear-gradient(110deg, #eaeaea 8%, #f5f5f5 18%, #eaeaea 33%);
+    background-size: 200% 100%;
+    animation: shine 1.3s infinite linear;
   }
 }
