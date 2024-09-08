@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
 //next
-import Image from "next/image";
 import Link from "next/link";
-//assets
-import UserAvatar from "../../../public/images/UserAvatar.png";
+
 //custom components
+import UserAvatar from "@/components/common/UserAvatar";
 import SecondaryButton from "@/components/common/SecondaryButton";
 
 const UserCard = ({ user }) => {
@@ -21,17 +20,10 @@ const UserCard = ({ user }) => {
       <div className="flex flex-row items-center w-full justify-between">
         <div className="flex flex-row gap-3 items-center">
           {/* avatar */}
-          <Link
-            href={`/dashboard/profile/${encodeURIComponent(user.id)}`}
-            className="w-[40px] relative min-w-[40px] h-[40px] hover:opacity-60"
-          >
-            <Image
-              className="rounded-full w-[40px] h-[40px]"
-              src={UserAvatar}
-              alt="user-avatar"
-              fill={true}
-            />
-          </Link>
+          <UserAvatar
+            size="small"
+            link={`/dashboard/profile/${encodeURIComponent(user.id)}`}
+          />
           {/* name and username */}
           <div className="flex flex-col gap-1">
             <Link

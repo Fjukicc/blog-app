@@ -20,9 +20,13 @@ module.exports = {
         "focus-primary": "#361FAD",
         "primary/50": "#ECE9FB",
         "text-primary": "#141C24",
+        "light-blue/700": "#0077CC",
+        "light-blue/50": "#E5F4FF",
+        "grey-cold/50": "#F1F3F4",
       },
       boxShadow: {
         light: "0px 1px 3px 0px #1A1A1A14",
+        avatar: "0px 2px 10px 0px #1A1A1A1A",
       },
     },
   },

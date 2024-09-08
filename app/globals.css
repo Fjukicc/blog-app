@@ -111,4 +111,30 @@ body {
     background-size: 200% 100%;
     animation: shine 1.3s infinite linear;
   }
+
+  .custom-card-gradient-bg {
+    background: linear-gradient(102.78deg, #ece9fb 0.31%, #fdede7 82.87%);
+  }
+
+  .user-card-footer-gradient-bg {
+    background: linear-gradient(180deg, #ffffff 0%, #fffaf5 100%);
+  }
+
+  .button-primary-bg-color {
+    background: linear-gradient(
+      180deg,
+      #ff0073 -114.9%,
+      #811ab8 -51.51%,
+      #4426d9 100%
+    );
+  }
+
+  .button-primary-bg-color-hover {
+    background: linear-gradient(
+      180deg,
+      #ff0073 -85.89%,
+      #811ab8 34.45%,
+      #4426d9 100%
+    );
+  }
 }

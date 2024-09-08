@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 //next
-import Image from "next/image";
 import Link from "next/link";
 //swr
 import { fetcher } from "@/swr/fetcher";
@@ -9,11 +8,10 @@ import useSWR from "swr";
 //icons
 import { FiThumbsUp, FiThumbsDown, FiEye } from "react-icons/fi";
 
-//assets
-import UserAvatar from "@/public/images/UserAvatar.png";
 //custom components
 import LoadingSkeleton from "./LoadingSkeleton";
 import ErrorComponent from "./ErrorComponent";
+import UserAvatar from "./UserAvatar";
 
 const PostCard = ({ postData, onUserDataError = null }) => {
   // Data fetching and error handling (it is recommended to revalidate data on focus and reconnect to keep the data up-to-date).
@@ -68,17 +66,10 @@ const PostCard = ({ postData, onUserDataError = null }) => {
         {/* content */}
         <div className="w-full p-4 gap-4 flex flex-row">
           {/* avatar */}
-          <Link
-            href={`/dashboard/profile/${encodeURIComponent(postData.userId)}`}
-            className="w-[40px] relative min-w-[40px] h-[40px] hover:opacity-60"
-          >
-            <Image
-              className="rounded-full w-[40px] h-[40px]"
-              src={UserAvatar}
-              alt="user-avatar"
-              fill={true}
-            />
-          </Link>
+          <UserAvatar
+            size="small"
+            link={`/dashboard/profile/${encodeURIComponent(user.id)}`}
+          />
           <div className="flex flex-col gap-3">
             {/* name and username */}
             <div className="flex flex-col gap-1">
