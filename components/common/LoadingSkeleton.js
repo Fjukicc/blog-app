@@ -25,7 +25,10 @@ const LoadingSkeleton = ({ type }) => {
             {/* post tags */}
             <div className="flex gap-3">
               {[0, 1, 2].map((tag) => (
-                <p className="bg-shine w-[40px] h-[14px] rounded-md" key={tag}></p>
+                <p
+                  className="bg-shine w-[40px] h-[14px] rounded-md"
+                  key={tag}
+                ></p>
               ))}
             </div>
           </div>
@@ -38,6 +41,26 @@ const LoadingSkeleton = ({ type }) => {
               key={loadingReaction}
             ></p>
           ))}
+        </div>
+      </div>
+    );
+  }
+  if (type === "UserCard") {
+    return (
+      <div className="w-full bg-white rounded-2xl border border-content-border shadow-light">
+        {/* content */}
+        <div className="w-full p-4 gap-4 flex flex-row">
+          {/* avatar loading */}
+          <div className="w-[40px] relative min-w-[40px] h-[40px]">
+            <div className="icon bg-shine w-full h-full rounded-full"></div>
+          </div>
+          {/* name and username */}
+          <div className="flex flex-col gap-1">
+            <div className="flex flex-row">
+              <p className="bg-shine h-[16px] w-[122px] rounded-md"></p>
+            </div>
+            <p className="bg-shine w-[62px] h-[14px] rounded-md"></p>
+          </div>
         </div>
       </div>
     );

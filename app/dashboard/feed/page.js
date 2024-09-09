@@ -1,40 +1,39 @@
 import React from "react";
-//lib
-import { getUsers, getPosts } from "@/lib/api";
 //util
 import { fetchData } from "@/util/fetchData";
+//lib
+import { getUsers, getPosts, getSingleUserById } from "@/lib/api";
+
 //custom components
-import PostCard from "@/components/common/PostCard";
-import UserCard from "@/components/dashboard/feed/UserCard";
-import ScrollContainer from "@/components/dashboard/feed/ScrollContainer";
-import ErrorComponent from "@/components/common/ErrorComponent";
+import SuggestedPostsSection from "@/components/dashboard/feed/SuggestedPostsSection";
+import RecentPostSection from "@/components/dashboard/feed/RecentPostSection";
+import SuggestedUsersSection from "@/components/dashboard/feed/SuggestedUsersSection";
 
 const page = async () => {
-  //data
-  let suggestedUsers = [];
-  let suggestedPosts = [];
-  let initialPostsForInfiniteScroll = [];
-
   //errors
-  let postsError = null;
-  let usersError = null;
-  let recentPostsError = null;
+  let suggestedPostsError = null;
+  let suggestedUsersError = null;
+  let initialRecentPostsError = null;
 
-  //get data from the server side
-  suggestedPosts = await fetchData(
+  //get suggested post
+  const suggestedPostsPromise = fetchData(
     getPosts,
     { params: "limit=2" },
-    (e) => (postsError = e)
+    (e) => (suggestedPostsError = e)
   );
-  suggestedUsers = await fetchData(
+
+  //sugested users
+  const suggestedUsersPromise = fetchData(
     getUsers,
     { params: "limit=4" },
-    (e) => (usersError = e)
+    (e) => (suggestedUsersError = e)
   );
-  initialPostsForInfiniteScroll = await fetchData(
+
+  //recent posts initial data
+  const initialRecentPostsPromise = fetchData(
     getPosts,
     { params: "limit=5" },
-    (e) => (recentPostsError = e)
+    (e) => (initialRecentPostsError = e)
   );
 
   return (
@@ -42,42 +41,28 @@ const page = async () => {
       {/* suggested posts section */}
       <section className="flex flex-col w-full gap-4">
         <h2 className="text-heading-2">Suggested posts</h2>
-        {postsError ? (
-          <ErrorComponent
-            title={"Error loading posts"}
-            bodyText={"We’re so sorry but it’s for the test."}
-          />
-        ) : (
-          suggestedPosts.map((sp) => <PostCard key={sp.id} postData={sp} />)
-        )}
+        <SuggestedPostsSection
+          suggestedPostsError={suggestedPostsError}
+          suggestedPostsPromise={suggestedPostsPromise}
+        />
       </section>
-      {/* who to follow section */}
+
+      {/* suggested users section */}
       <section className="w-full flex flex-col gap-4">
         <h2 className="text-heading-2">Who to follow</h2>
-        {usersError ? (
-          <ErrorComponent
-            title={"Error loading users"}
-            bodyText={"We’re so sorry but it’s for the test."}
-          />
-        ) : (
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
-            {suggestedUsers.map((suggestedUser) => (
-              <UserCard key={suggestedUser.id} user={suggestedUser} />
-            ))}
-          </div>
-        )}
+        <SuggestedUsersSection
+          suggestedUsersPromise={suggestedUsersPromise}
+          suggestedUsersError={suggestedUsersError}
+        />
       </section>
-      {/* Recent */}
+
+      {/* recent posts section */}
       <section className="w-full flex flex-col gap-4">
         <h2 className="text-heading-2">Recent</h2>
-        {recentPostsError ? (
-          <ErrorComponent
-            title={"Error loading posts"}
-            bodyText={"We’re so sorry but it’s for the test."}
-          />
-        ) : (
-          <ScrollContainer initialPosts={initialPostsForInfiniteScroll} />
-        )}
+        <RecentPostSection
+          initialRecentPostsPromise={initialRecentPostsPromise}
+          initialRecentPostsError={initialRecentPostsError}
+        />
       </section>
     </main>
   );

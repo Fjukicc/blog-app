@@ -9,6 +9,8 @@ import SecondaryButton from "@/components/common/SecondaryButton";
 import PrimaryButton from "@/components/common/PrimaryButton";
 
 const ProfileCardDesktop = ({ user, userPosts }) => {
+
+  //get total posts and likes
   const { totalLikes, totalPosts } = useMemo(() => {
     let total_likes = 0;
     let total_posts = userPosts.length;
@@ -24,7 +26,7 @@ const ProfileCardDesktop = ({ user, userPosts }) => {
   }, [userPosts]);
 
   return (
-    <div className="w-full relative shadow-light min-h-64 rounded-xl flex flex-col bg-white border border-content-border">
+    <div className="w-full relative shadow-light rounded-xl flex flex-col bg-white border border-content-border">
       <div className="absolute top-10 left-6 w-[120px] h-[120px] rounded-full border-[5px] border-white shadow-avatar">
         <UserAvatar size="large" link={""} />
       </div>
