@@ -23,6 +23,13 @@ const ProfileSection = async ({
   const userProfileData = await userProfilePromise;
   const allUserPostsData = await allUserPostsPromise;
 
+  // use this function to simulate network delay so you can see skeletons
+  // const simulateNetworkDelay = async (ms) => {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // };
+
+  // await simulateNetworkDelay(2000);
+
   return (
     <>
       <div className="lg:hidden">

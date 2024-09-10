@@ -6,7 +6,7 @@ import { getSingleUserById } from "@/lib/api";
 
 //custom components
 import ErrorComponent from "@/components/common/ErrorComponent";
-import ScrollContainer from "./ScrollContainer";
+import ScrollContainer from "../../common/ScrollContainer";
 
 const RecentPostSection = async ({
   initialRecentPostsPromise,
@@ -64,6 +64,7 @@ const RecentPostSection = async ({
     <ScrollContainer
       initialPosts={initialRecentPostsWithUserData}
       params={"posts?limit=5"}
+      isFromFeed={false}
     />
   );
 };

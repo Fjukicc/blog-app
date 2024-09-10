@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 //icons
 import { FiMapPin } from "react-icons/fi";
 
@@ -9,6 +9,16 @@ import SecondaryButton from "@/components/common/SecondaryButton";
 import PrimaryButton from "@/components/common/PrimaryButton";
 
 const ProfileCardDesktop = ({ user, userPosts }) => {
+  const [isMessageButtonClicked, setIsMessageButtonClicked] = useState(false);
+  const [isFollowButtonClicked, setIsFollowButtonClicked] = useState(false);
+
+  const handleMessageButtonClick = () => {
+    setIsMessageButtonClicked(!isMessageButtonClicked);
+  };
+
+  const handleFollowButtonClicked = () => {
+    setIsFollowButtonClicked(!isFollowButtonClicked);
+  };
 
   //get total posts and likes
   const { totalLikes, totalPosts } = useMemo(() => {
@@ -31,7 +41,7 @@ const ProfileCardDesktop = ({ user, userPosts }) => {
         <UserAvatar size="large" link={""} />
       </div>
       {/* gradient upper part of the card */}
-      <div className="w-full h-16 custom-card-gradient-bg"></div>
+      <div className="w-full h-16 custom-card-gradient-bg" />
       {/* card content */}
       <div className="w-full flex flex-col bg-white gap-6 py-6 pr-6 pl-[170px]">
         {/* upper info */}
@@ -75,8 +85,18 @@ const ProfileCardDesktop = ({ user, userPosts }) => {
       </div>
       {/* card footer => Follow, Message */}
       <div className="flex w-full flex-row gap-4 py-4 px-6 border-t border-grey-cold/50 user-card-footer-gradient-bg">
-        <PrimaryButton onClick={() => {}} title={"Follow"} size={"medium"} />
-        <SecondaryButton onClick={() => {}} title={"Message"} size={"medium"} />
+        <PrimaryButton
+          isButtonClicked={isFollowButtonClicked}
+          onClick={handleFollowButtonClicked}
+          title={"Follow"}
+          size={"medium"}
+        />
+        <SecondaryButton
+          isButtonClicked={isMessageButtonClicked}
+          onClick={handleMessageButtonClick}
+          title={"Message"}
+          size={"medium"}
+        />
       </div>
     </div>
   );

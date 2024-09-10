@@ -19,12 +19,12 @@ const SuggestedUsersSection = async ({
 
   const suggestedUsersData = await suggestedUsersPromise;
 
-  //use this function to simulate network delay so you can see skeletons
+  // // use this function to simulate network delay so you can see skeletons
   // const simulateNetworkDelay = async (ms) => {
   //   return new Promise((resolve) => setTimeout(resolve, ms));
   // };
 
-  // await simulateNetworkDelay(5000)
+  // await simulateNetworkDelay(2000)
 
   return (
     <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -6,7 +6,7 @@ import { getSingleUserById } from "@/lib/api";
 
 //custom components
 import ErrorComponent from "@/components/common/ErrorComponent";
-import ScrollContainer from "../feed/ScrollContainer";
+import ScrollContainer from "../../common/ScrollContainer";
 
 const RecentUserPostsSection = async ({
   initialUserPostsPromise,
