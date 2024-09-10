@@ -115,6 +115,7 @@ const ScrollContainer = ({ initialPosts, params, isFromFeed = false }) => {
             if (post.user === "errorFetchingUserData") {
               return (
                 <ErrorComponent
+                  key={post.user}
                   title={"Error loading posts"}
                   bodyText={"We’re so sorry but it’s for the test."}
                 />
