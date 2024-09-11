@@ -2,7 +2,7 @@ import React from "react";
 //util
 import { fetchData } from "@/util/fetchData";
 //lib
-import { getUsers, getPosts, getSingleUserById } from "@/lib/api";
+import { getPosts, getSingleUserById } from "@/lib/api";
 
 //custom components
 import SuggestedPostsSection from "@/components/dashboard/feed/SuggestedPostsSection";
@@ -11,22 +11,14 @@ import SuggestedUsersSection from "@/components/dashboard/feed/SuggestedUsersSec
 
 const page = async () => {
   //errors
-  let suggestedPostsError = null;
-  let suggestedUsersError = null;
+  let numOfPostsError = null;
   let initialRecentPostsError = null;
 
-  //get suggested post
-  const suggestedPostsPromise = fetchData(
+  //get number of post
+  const numOfPostsPromise = fetchData(
     getPosts,
-    { params: "limit=2" },
-    (e) => (suggestedPostsError = e)
-  );
-
-  //sugested users
-  const suggestedUsersPromise = fetchData(
-    getUsers,
-    { params: "limit=4" },
-    (e) => (suggestedUsersError = e)
+    { params: "limit=1", onlyArray: false },
+    (e) => (numOfPostsError = e)
   );
 
   //recent posts initial data
@@ -42,8 +34,8 @@ const page = async () => {
       <section className="flex flex-col w-full gap-4">
         <h2 className="text-heading-2">Suggested posts</h2>
         <SuggestedPostsSection
-          suggestedPostsError={suggestedPostsError}
-          suggestedPostsPromise={suggestedPostsPromise}
+          numOfPostsPromise={numOfPostsPromise}
+          numOfPostsError={numOfPostsError}
         />
       </section>
 
@@ -51,8 +43,8 @@ const page = async () => {
       <section className="w-full flex flex-col gap-4">
         <h2 className="text-heading-2">Who to follow</h2>
         <SuggestedUsersSection
-          suggestedUsersPromise={suggestedUsersPromise}
-          suggestedUsersError={suggestedUsersError}
+          numOfPostsPromise={numOfPostsPromise}
+          numOfPostsError={numOfPostsError}
         />
       </section>
 
