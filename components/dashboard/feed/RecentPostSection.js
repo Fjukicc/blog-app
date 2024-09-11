@@ -64,7 +64,7 @@ const RecentPostSection = async ({
     <ScrollContainer
       initialPosts={initialRecentPostsWithUserData}
       params={"posts?limit=5"}
-      isFromFeed={false}
+      isFromFeed={true}
     />
   );
 };

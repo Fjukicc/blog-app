@@ -25,24 +25,24 @@ const ScrollContainer = ({ initialPosts, params, isFromFeed = false }) => {
 
   useEffect(() => {
     //if scroll container route is from feed
-    // if (isFromFeed) {
-    //   let cachedPosts = localStorage.getItem(CACHE_POSTS_KEY);
-    //   if (cachedPosts) {
-    //     let cachedPostsData = JSON.parse(cachedPosts);
-    //     setAllPosts(cachedPostsData);
-    //     setSkip(cachedPostsData.length);
-    //     if (cachedPostsData.length <= 4) {
-    //       setHasMore(false);
-    //     }
-    //   } else {
-    //     setSkip(5);
-    //     localStorage.setItem(CACHE_POSTS_KEY, JSON.stringify(initialPosts));
-    //     setAllPosts(initialPosts);
-    //     if (initialPosts.length <= 4) {
-    //       setHasMore(false);
-    //     }
-    //   }
-    // }
+    if (isFromFeed) {
+      let cachedPosts = localStorage.getItem(CACHE_POSTS_KEY);
+      if (cachedPosts) {
+        let cachedPostsData = JSON.parse(cachedPosts);
+        setAllPosts(cachedPostsData);
+        setSkip(cachedPostsData.length);
+        if (cachedPostsData.length <= 4) {
+          setHasMore(false);
+        }
+      } else {
+        setSkip(5);
+        localStorage.setItem(CACHE_POSTS_KEY, JSON.stringify(initialPosts));
+        setAllPosts(initialPosts);
+        if (initialPosts.length <= 4) {
+          setHasMore(false);
+        }
+      }
+    }
     //for every user profile do not check cache
     // else {
     if (initialPosts.length <= 4) {
@@ -92,12 +92,12 @@ const ScrollContainer = ({ initialPosts, params, isFromFeed = false }) => {
         }
         setAllPosts((prevItems) => [...prevItems, ...postWithUserData]);
         // only cache first 20 posts
-        // if (skip < 20) {
-        //   localStorage.setItem(
-        //     CACHE_POSTS_KEY,
-        //     JSON.stringify([...allPosts, ...postWithUserData])
-        //   );
-        // }
+        if (skip < 20) {
+          localStorage.setItem(
+            CACHE_POSTS_KEY,
+            JSON.stringify([...allPosts, ...postWithUserData])
+          );
+        }
         setSkip(skip + 5);
       }, 1500);
     } catch (error) {
