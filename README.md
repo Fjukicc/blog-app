@@ -3,7 +3,7 @@
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/Fjukicc/blog-app.git
-   cd project-name
+   cd blog-app
    ```
 
 2. **Install Dependencies**:
