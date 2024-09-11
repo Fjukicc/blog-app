@@ -86,15 +86,18 @@ const ScrollContainer = ({ initialPosts, params, isFromFeed = false }) => {
       );
 
       setTimeout(() => {
+        if (skip + 5 >= postData.total) {
+          setHasMore(false);
+          return;
+        }
         setAllPosts((prevItems) => [...prevItems, ...postWithUserData]);
         // only cache first 20 posts
-        if (skip < 20) {
-          localStorage.setItem(
-            CACHE_POSTS_KEY,
-            JSON.stringify([...allPosts, ...postWithUserData])
-          );
-        }
-        skip >= postData.total ? setHasMore(false) : setHasMore(true);
+        // if (skip < 20) {
+        //   localStorage.setItem(
+        //     CACHE_POSTS_KEY,
+        //     JSON.stringify([...allPosts, ...postWithUserData])
+        //   );
+        // }
         setSkip(skip + 5);
       }, 1500);
     } catch (error) {
