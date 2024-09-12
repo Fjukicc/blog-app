@@ -41,7 +41,7 @@ const Header = () => {
           <BackButton link={backButtonLink} />
         </div>
       )}
-      <div className={`flex-1 text-heading-3 text-center`}>{headerText}</div>
+      <div className={`flex-1 text-heading-3 ${isBackAllowed && "mr-[16px]"} text-center`}>{headerText}</div>
     </div>
   );
 };
